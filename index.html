@@ -3,192 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Export - Méthode Ultra-Fiable</title>
+    <title>Exportateur d'Abonnements YouTube</title>
     <style>
-        :root {
-            --yt-red: #ff0000;
-            --yt-dark: #212121;
-            --bg-light: #f9f9f9;
-            --accent: #007bff;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--bg-light);
-        }
-        .header {
-            text-align: center;
-            padding: 40px 0;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-        h1 { color: var(--yt-red); margin-bottom: 10px; }
-        .badge {
-            display: inline-block;
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
-        .advantages {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .adv-card {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 0.9em;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .step {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--accent);
-        }
-        .step h2 { margin-top: 0; display: flex; align-items: center; }
-        .step-num {
-            background: var(--accent);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 0.8em;
-        }
-        .copy-box {
-            background: #f1f1f1;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 0.8em;
-            word-break: break-all;
-            margin: 15px 0;
-            border: 1px solid #ddd;
-            max-height: 100px;
-            overflow-y: auto;
-        }
-        button {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            transition: background 0.3s;
-        }
-        button:hover { background: #0056b3; }
-        button.csv { background: #28a745; }
-        button.csv:hover { background: #1e7e34; }
-        
-        .warning {
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-        img.demo {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-        }
+        body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; max-width: 600px; margin: 20px auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #ff0000; text-align: center; font-size: 1.5rem; }
+        .step { background: #fff; border-left: 5px solid #ff0000; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
+        .warning { background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 8px; font-size: 0.9em; margin-bottom: 20px; }
+        button { background: #ff0000; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
+        button:active { background: #cc0000; }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; font-size: 0.9em; word-break: break-all; }
+        .url-box { background: #f0f0f0; padding: 10px; border: 1px dashed #ccc; margin: 10px 0; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>YouTube Export Pro</h1>
-        <div class="badge">✓ Solution Anti-Erreur (Mobile & PC)</div>
-        <p>Récupérez la liste de vos abonnements sans aucun compte tiers.</p>
-    </div>
-
-    <div class="advantages">
-        <div class="adv-card"><strong>🔒 Privé</strong><br>Vos données ne quittent jamais votre appareil.</div>
-        <div class="adv-card"><strong>🚀 Rapide</strong><br>Exportez des milliers de chaînes en 10s.</div>
-        <div class="adv-card"><strong>💎 Gratuit</strong><br>Pas de limites d'API ou de quotas.</div>
-    </div>
-
+<div class="card">
+    <h1>🚀 Exportateur YouTube</h1>
+    
     <div class="warning">
-        <strong>Pourquoi cette méthode ?</strong><br>
-        Le copier-coller direct dans la barre d'adresse échoue souvent car le code est "trop long". En utilisant un <strong>favori</strong>, on contourne cette limite et cela fonctionne à chaque fois.
+        <strong>Pourquoi rien ne se passe ?</strong><br>
+        1. Vous devez être sur la page <strong>"Tous les abonnements"</strong>.<br>
+        2. Sur mobile, vous devez <strong>taper le nom du favori</strong> dans la barre d'adresse, pas juste cliquer dessus.
     </div>
 
-    <!-- ÉTAPE 1 -->
     <div class="step">
-        <h2><div class="step-num">1</div>Préparez le "Favori Magique"</h2>
-        <p>Ajoutez cette page actuelle (ou n'importe laquelle) à vos <strong>Favoris</strong>.</p>
-        <p>Nommez-le : <strong>"🚀 Exporter YouTube"</strong>.</p>
+        <strong>Étape 1 : Allez sur la bonne page</strong><br>
+        Ouvrez YouTube et allez ici :<br>
+        <div class="url-box">youtube.com/feed/channels</div>
     </div>
 
-    <!-- ÉTAPE 2 -->
     <div class="step">
-        <h2><div class="step-num">2</div>Copiez le Code de votre choix</h2>
-        <p>Choisissez le format et cliquez pour copier le script :</p>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div>
-                <button onclick="copyCode('json')">Copier code JSON</button>
-                <p style="font-size: 0.7em; text-align:center;">(Pour les développeurs)</p>
-            </div>
-            <div>
-                <button class="csv" onclick="copyCode('csv')">Copier code CSV</button>
-                <p style="font-size: 0.7em; text-align:center;">(Pour Excel / Tableur)</p>
-            </div>
-        </div>
-
-        <p>Maintenant, allez dans vos favoris, cliquez sur <strong>"Modifier"</strong> celui que vous venez de créer, et <strong>collez</strong> ce code à la place de l'adresse (URL).</p>
+        <strong>Étape 2 : Créez le "Favori Magique"</strong><br>
+        1. Copiez ce code : 
+        <button onclick="copyScript()">Copier le code de l'outil</button>
+        2. Créez un favori dans votre navigateur (n'importe quelle page).<br>
+        3. Modifiez-le : nommez-le <strong>"EXTRAIRE"</strong> et collez le code copié dans le champ <strong>URL/Adresse</strong>.
     </div>
 
-    <!-- ÉTAPE 3 -->
     <div class="step">
-        <h2><div class="step-num">3</div>Lancez sur YouTube</h2>
-        <ol>
-            <li>Allez sur votre page <strong>Abonnements</strong> sur YouTube.</li>
-            <li>Cliquez sur votre barre d'adresse.</li>
-            <li>Tapez le nom : <code>Exporter YouTube</code>.</li>
-            <li>Cliquez sur le favori qui apparaît dans les suggestions.</li>
-        </ol>
-        <p><em>Le script va défiler tout seul vers le bas puis déclencher le téléchargement.</em></p>
+        <strong>Étape 3 : Lancez l'exportation</strong><br>
+        1. Sur la page YouTube, cliquez sur la barre d'adresse.<br>
+        2. Tapez <code>EXTRAIRE</code>.<br>
+        3. Cliquez sur le favori qui apparaît avec une petite étoile ⭐️ ou une loupe.<br>
+        4. <strong>Attendez l'alerte !</strong> Le téléphone va défiler tout seul puis télécharger le fichier.
     </div>
+</div>
 
-    <script>
-        const scripts = {
-            json: `javascript:(async function(){let h=0;while(document.documentElement.scrollHeight>h){h=document.documentElement.scrollHeight;window.scrollTo(0,h);await new Promise(r=>setTimeout(r,1000))}let s=[];document.querySelectorAll('ytd-channel-renderer,ytm-channel-renderer').forEach(e=>{let l=e.querySelector('a'),n=e.querySelector('#text,h3');if(l&&n)s.push({name:n.innerText.trim(),url:l.href})});let b=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='youtube_subs.json';a.click();alert(s.length+' abonnements exportés!')})()`,
-            csv: `javascript:(async function(){let h=0;while(document.documentElement.scrollHeight>h){h=document.documentElement.scrollHeight;window.scrollTo(0,h);await new Promise(r=>setTimeout(r,1000))}let s='Nom,URL\\n';document.querySelectorAll('ytd-channel-renderer,ytm-channel-renderer').forEach(e=>{let l=e.querySelector('a'),n=e.querySelector('#text,h3');if(l&&n)s+=\`"\${n.innerText.trim()}",\${l.href}\\n\`});let b=new Blob(['\\ufeff'+s],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='youtube_subs.csv';a.click();alert('Export CSV terminé !')})()`
-        };
-
-        function copyCode(type) {
-            const text = scripts[type];
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Code " + type.toUpperCase() + " copié ! Allez maintenant modifier votre favori.");
-            });
-        }
-    </script>
+<script>
+function copyScript() {
+    const script = `javascript:(async function(){alert("Démarrage de l'extraction... Ne touchez à rien, la page va défiler toute seule.");let h=0;while(document.documentElement.scrollHeight>h){h=document.documentElement.scrollHeight;window.scrollTo(0,h);await new Promise(r=>setTimeout(r,1000))}let s=[];document.querySelectorAll('ytd-channel-renderer,ytm-channel-item-renderer').forEach(e=>{let l=e.querySelector('a'),n=e.querySelector('#text,.subgrid-channel-name,h3');if(l&&n)s.push({nom:n.innerText.trim(),lien:l.href})});if(s.length===0){alert("Erreur : Aucun abonnement trouvé. Assurez-vous d'être sur la page youtube.com/feed/channels");return;}let b=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mes-abonnements.json';a.click();alert("Succès ! "+s.length+" abonnements exportés.")})()`;
+    navigator.clipboard.writeText(script);
+    alert("Code copié ! Créez maintenant votre favori.");
+}
+</script>
 
 </body>
 </html>
