@@ -3,101 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exportateur YouTube Mobile & PC</title>
+    <title>Export YouTube V3</title>
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; max-width: 600px; margin: 20px auto; padding: 20px; color: #333; background-color: #f1f1f1; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { color: #ff0000; text-align: center; }
-        .step { background: #fff; border-left: 5px solid #ff0000; padding: 15px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .btn-copy { background: #ff0000; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1.1em; }
-        .btn-copy:active { background: #cc0000; transform: scale(0.98); }
-        code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
-        .footer { text-align: center; font-size: 0.8em; color: #666; margin-top: 20px; }
+        body { font-family: sans-serif; padding: 20px; line-height: 1.4; background: #f4f4f4; color: #333; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #cc0000; font-size: 1.2rem; text-align: center; }
+        .btn { background: #cc0000; color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 10px 0; }
+        .step { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #eee; }
+        code { background: #eee; padding: 2px 4px; border-radius: 4px; font-family: monospace; font-weight: bold; }
+        .red { color: #cc0000; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h1>🚀 Exportateur YouTube</h1>
-    
+    <h1>YouTube Export V3 (Ultra-Léger)</h1>
+
     <div class="step">
-        <strong>1. Préparez le terrain</strong><br>
-        Ouvrez cet onglet sur votre téléphone : <br>
-        <a href="https://m.youtube.com/feed/channels" target="_blank" style="color: #007bff;">m.youtube.com/feed/channels</a>
+        <strong>1.</strong> <button class="btn" onclick="copyCode()">COPIER LE CODE</button>
     </div>
 
     <div class="step">
-        <strong>2. Copiez l'outil</strong><br>
-        Appuyez sur le bouton ci-dessous :
-        <button class="btn-copy" onclick="copyScript()">COPIER LE CODE</button>
+        <strong>2. Créer le favori :</strong><br>
+        Créez un favori (n'importe quelle page), nommez-le <code>EXTRAIRE</code>, et remplacez son adresse (URL) par le code copié.
     </div>
 
     <div class="step">
-        <strong>3. Créez votre favori</strong><br>
-        Créez un favori nommé <code>EXTRAIRE</code> et collez le code copié dans le champ <strong>URL</strong>.
-    </div>
-
-    <div class="step">
-        <strong>4. Lancez sur YouTube</strong><br>
-        Sur la page YouTube, tapez <code>EXTRAIRE</code> dans la barre d'adresse et cliquez sur le favori suggéré (avec l'étoile ⭐️).
+        <strong>3. Lancer l'export :</strong><br>
+        Allez sur <a href="https://m.youtube.com/feed/channels">m.youtube.com/feed/channels</a>.<br><br>
+        <span class="red">SUR ANDROID (Chrome) :</span> Effacez la barre d'adresse, tapez <code>EXTRAIRE</code>, et cliquez sur le favori suggéré.<br><br>
+        <span class="red">SUR IPHONE (Safari) :</span> Ne passez pas par la barre d'adresse. Cliquez sur l'icône <strong>Livre (Favoris)</strong> en bas et cliquez directement sur <code>EXTRAIRE</code>.
     </div>
 </div>
 
-<div class="footer">Note : Le défilement automatique peut prendre 10 à 30 secondes selon votre nombre d'abonnements.</div>
-
 <script>
-function copyScript() {
-    const script = `javascript:(async function(){
-        alert("Extraction lancée... La page va défiler toute seule. Patientez jusqu'au message de succès.");
-        
-        /* 1. Défilement automatique pour tout charger */
-        let lastHeight = 0;
-        while(true) {
-            window.scrollTo(0, document.body.scrollHeight);
-            await new Promise(r => setTimeout(r, 1500));
-            let newHeight = document.body.scrollHeight;
-            if(newHeight === lastHeight) break;
-            lastHeight = newHeight;
-        }
-
-        /* 2. Extraction brute des liens de chaînes */
-        let channels = [];
-        let seen = new Set();
-        
-        // On cherche tous les liens qui contiennent /@ ou /channel/
-        document.querySelectorAll('a').forEach(a => {
-            let href = a.href;
-            let name = a.innerText.trim();
-            
-            if ( (href.includes('/@') || href.includes('/channel/')) && name.length > 2 ) {
-                // On évite les doublons et les faux positifs
-                if (!seen.has(href) && !name.includes('\\n')) {
-                    channels.push({ nom: name, lien: href });
-                    seen.add(href);
-                }
-            }
-        });
-
-        if (channels.length === 0) {
-            alert("Erreur : Toujours rien trouvé. Assurez-vous d'être sur la page 'Tous vos abonnements'.");
-        } else {
-            let blob = new Blob([JSON.stringify(channels, null, 2)], {type: 'application/json'});
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = 'abonnements_youtube.json';
-            document.body.appendChild(a);
-            a.click();
-            alert("Terminé ! " + channels.length + " abonnements extraits dans votre dossier Téléchargements.");
-        }
-    })()`;
+function copyCode() {
+    const code = "javascript:(function(){alert('Lancement...');var h=0,i=0,t=setInterval(function(){window.scrollTo(0,document.body.scrollHeight);if(i++>20||(h>0&&document.body.scrollHeight==h)){clearInterval(t);var c=[],s=new Set(),l=document.links;for(var j=0;j<l.length;j++){var a=l[j];if((a.href.indexOf('/@')>-1||a.href.indexOf('/channel/')>-1)&&a.innerText.length>2){if(!s.has(a.href)){c.push({nom:a.innerText,lien:a.href});s.add(a.href);}}}if(c.length==0){alert('Erreur: rien trouvé');}else{var b=new Blob([JSON.stringify(c,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),d=document.createElement('a');d.href=u;d.download='subs.json';d.click();alert('Terminé: '+c.length+' chaînes');}}h=document.body.scrollHeight;},1000);})()";
     
-    const el = document.createElement('textarea');
-    el.value = script;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
+    const dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = code;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
     alert("Code copié !");
 }
 </script>
