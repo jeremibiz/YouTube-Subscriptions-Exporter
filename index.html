@@ -3,226 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exportateur d'Abonnements YouTube</title>
+    <title>YouTube Export - Méthode Ultra-Fiable</title>
     <style>
         :root {
             --yt-red: #ff0000;
             --yt-dark: #212121;
-            --bg-gray: #f9f9f9;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --bg-light: #f9f9f9;
+            --accent: #007bff;
         }
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-gray);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
+            color: #333;
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
+            padding: 20px;
+            background-color: var(--bg-light);
         }
-        header {
+        .header {
             text-align: center;
-            border-bottom: 2px solid #eee;
+            padding: 40px 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             margin-bottom: 30px;
-            padding-bottom: 20px;
         }
-        h1 { color: var(--yt-red); margin: 0; font-size: 2rem; }
-        .subtitle { color: #666; font-size: 1.1rem; }
-
+        h1 { color: var(--yt-red); margin-bottom: 10px; }
+        .badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
         .advantages {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         .adv-card {
-            background: #fff5f5;
+            background: white;
             padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--yt-red);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .adv-card h3 { margin: 0 0 5px 0; font-size: 1rem; color: var(--yt-red); }
-        .adv-card p { margin: 0; font-size: 0.9rem; color: #555; }
-
         .step {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 12px;
-            background: #f1f3f5;
-            position: relative;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent);
         }
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            background: var(--yt-red);
+        .step h2 { margin-top: 0; display: flex; align-items: center; }
+        .step-num {
+            background: var(--accent);
             color: white;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255,0,0,0.3);
+            margin-right: 15px;
+            font-size: 0.8em;
         }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
+        .copy-box {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.8em;
+            word-break: break-all;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            max-height: 100px;
+            overflow-y: auto;
         }
-        .btn {
-            flex: 1;
-            min-width: 200px;
-            padding: 12px 20px;
+        button {
+            background: var(--accent);
+            color: white;
             border: none;
+            padding: 12px 25px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            width: 100%;
+            transition: background 0.3s;
         }
-        .btn-json { background: #2d3436; color: white; }
-        .btn-csv { background: #00b894; color: white; }
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
-        .btn:active { transform: translateY(0); }
-
-        .warning-box {
+        button:hover { background: #0056b3; }
+        button.csv { background: #28a745; }
+        button.csv:hover { background: #1e7e34; }
+        
+        .warning {
             background: #fff3cd;
             border: 1px solid #ffeeba;
             color: #856404;
             padding: 15px;
             border-radius: 8px;
-            margin: 15px 0;
-            font-weight: bold;
+            margin: 20px 0;
+            font-size: 0.9em;
         }
-        code {
-            background: #e9ecef;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: var(--yt-red);
+        img.demo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
         }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.8rem;
-            color: #999;
-        }
-        .check-icon { font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
+    <div class="header">
         <h1>YouTube Export Pro</h1>
-        <p class="subtitle">Récupérez la liste de vos abonnements en 1 minute.</p>
-    </header>
+        <div class="badge">✓ Solution Anti-Erreur (Mobile & PC)</div>
+        <p>Récupérez la liste de vos abonnements sans aucun compte tiers.</p>
+    </div>
 
     <div class="advantages">
-        <div class="adv-card">
-            <h3>🔒 100% Privé</h3>
-            <p>Aucune donnée ne transite par un serveur. Tout se passe sur votre appareil.</p>
-        </div>
-        <div class="adv-card">
-            <h3>🚀 Sans Limite</h3>
-            <p>Pas de quota Google API. Exportez 10 ou 10 000 chaînes instantanément.</p>
-        </div>
-        <div class="adv-card">
-            <h3>📱 Multi-support</h3>
-            <p>Fonctionne sur Ordinateur et Smartphone (via la barre d'adresse).</p>
-        </div>
+        <div class="adv-card"><strong>🔒 Privé</strong><br>Vos données ne quittent jamais votre appareil.</div>
+        <div class="adv-card"><strong>🚀 Rapide</strong><br>Exportez des milliers de chaînes en 10s.</div>
+        <div class="adv-card"><strong>💎 Gratuit</strong><br>Pas de limites d'API ou de quotas.</div>
     </div>
 
+    <div class="warning">
+        <strong>Pourquoi cette méthode ?</strong><br>
+        Le copier-coller direct dans la barre d'adresse échoue souvent car le code est "trop long". En utilisant un <strong>favori</strong>, on contourne cette limite et cela fonctionne à chaque fois.
+    </div>
+
+    <!-- ÉTAPE 1 -->
     <div class="step">
-        <div class="step-number">1</div>
-        <h3>Choisissez votre format d'export</h3>
-        <p>Cliquez sur l'un des boutons ci-dessous pour copier le script magique.</p>
-        <div class="btn-group">
-            <button class="btn btn-json" onclick="copyScript('json')">📋 Copier pour JSON (Développeurs)</button>
-            <button class="btn btn-csv" onclick="copyScript('csv')">📊 Copier pour CSV (Excel / Tableur)</button>
+        <h2><div class="step-num">1</div>Préparez le "Favori Magique"</h2>
+        <p>Ajoutez cette page actuelle (ou n'importe laquelle) à vos <strong>Favoris</strong>.</p>
+        <p>Nommez-le : <strong>"🚀 Exporter YouTube"</strong>.</p>
+    </div>
+
+    <!-- ÉTAPE 2 -->
+    <div class="step">
+        <h2><div class="step-num">2</div>Copiez le Code de votre choix</h2>
+        <p>Choisissez le format et cliquez pour copier le script :</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <button onclick="copyCode('json')">Copier code JSON</button>
+                <p style="font-size: 0.7em; text-align:center;">(Pour les développeurs)</p>
+            </div>
+            <div>
+                <button class="csv" onclick="copyCode('csv')">Copier code CSV</button>
+                <p style="font-size: 0.7em; text-align:center;">(Pour Excel / Tableur)</p>
+            </div>
         </div>
+
+        <p>Maintenant, allez dans vos favoris, cliquez sur <strong>"Modifier"</strong> celui que vous venez de créer, et <strong>collez</strong> ce code à la place de l'adresse (URL).</p>
     </div>
 
+    <!-- ÉTAPE 3 -->
     <div class="step">
-        <div class="step-number">2</div>
-        <h3>Allez sur la page YouTube</h3>
-        <p>Ouvrez votre liste d'abonnements dans un nouvel onglet :</p>
-        <a href="https://www.youtube.com/feed/channels" target="_blank" style="color: var(--yt-red); font-weight: bold;">Ouvrir mes abonnements YouTube ↗</a>
-    </div>
-
-    <div class="step">
-        <div class="step-number">3</div>
-        <h3>Activez l'exportation</h3>
-        <p>C'est l'étape la plus importante :</p>
+        <h2><div class="step-num">3</div>Lancez sur YouTube</h2>
         <ol>
-            <li>Cliquez dans la <strong>barre d'adresse</strong> (en haut du navigateur).</li>
-            <li>Effacez tout ce qui s'y trouve.</li>
-            <li>Tapez au clavier : <code>javascript:</code></li>
-            <li><strong>Collez</strong> immédiatement le script après les deux points.</li>
-            <li>Appuyez sur la touche <strong>Entrée</strong> ↵</li>
+            <li>Allez sur votre page <strong>Abonnements</strong> sur YouTube.</li>
+            <li>Cliquez sur votre barre d'adresse.</li>
+            <li>Tapez le nom : <code>Exporter YouTube</code>.</li>
+            <li>Cliquez sur le favori qui apparaît dans les suggestions.</li>
         </ol>
-        <div class="warning-box">
-            ⚠️ Attention : Si vous collez directement "javascript:...", le navigateur supprimera le mot "javascript:". Vous DEVEZ le taper à la main.
-        </div>
+        <p><em>Le script va défiler tout seul vers le bas puis déclencher le téléchargement.</em></p>
     </div>
 
-    <footer>
-        <p>Outil open-source et gratuit. Aucun compte requis.</p>
-    </footer>
-</div>
+    <script>
+        const scripts = {
+            json: `javascript:(async function(){let h=0;while(document.documentElement.scrollHeight>h){h=document.documentElement.scrollHeight;window.scrollTo(0,h);await new Promise(r=>setTimeout(r,1000))}let s=[];document.querySelectorAll('ytd-channel-renderer,ytm-channel-renderer').forEach(e=>{let l=e.querySelector('a'),n=e.querySelector('#text,h3');if(l&&n)s.push({name:n.innerText.trim(),url:l.href})});let b=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='youtube_subs.json';a.click();alert(s.length+' abonnements exportés!')})()`,
+            csv: `javascript:(async function(){let h=0;while(document.documentElement.scrollHeight>h){h=document.documentElement.scrollHeight;window.scrollTo(0,h);await new Promise(r=>setTimeout(r,1000))}let s='Nom,URL\\n';document.querySelectorAll('ytd-channel-renderer,ytm-channel-renderer').forEach(e=>{let l=e.querySelector('a'),n=e.querySelector('#text,h3');if(l&&n)s+=\`"\${n.innerText.trim()}",\${l.href}\\n\`});let b=new Blob(['\\ufeff'+s],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='youtube_subs.csv';a.click();alert('Export CSV terminé !')})()`
+        };
 
-<script>
-function copyScript(format) {
-    const baseScript = `(async function(){
-        console.log("Export en cours...");
-        let lastHeight = 0;
-        while(document.documentElement.scrollHeight > lastHeight){
-            lastHeight = document.documentElement.scrollHeight;
-            window.scrollTo(0, lastHeight);
-            await new Promise(r => setTimeout(r, 1000));
+        function copyCode(type) {
+            const text = scripts[type];
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Code " + type.toUpperCase() + " copié ! Allez maintenant modifier votre favori.");
+            });
         }
-        const data = [];
-        document.querySelectorAll('ytd-channel-renderer, ytd-grid-channel-renderer, ytm-channel-renderer').forEach(el => {
-            const a = el.querySelector('a#main-link, a.channel-link, a');
-            const n = el.querySelector('#text, .index-module_text__2-Z_a, h3');
-            if(a && n) data.push({name: n.innerText.trim().replace(/[,\\n]/g, ''), url: a.href});
-        });
-        let content, mime, ext;
-        if('${format}' === 'json') {
-            content = JSON.stringify(data, null, 2);
-            mime = 'application/json';
-            ext = 'json';
-        } else {
-            content = "\\uFEFFNom,Lien\\n" + data.map(i => i.name + ',' + i.url).join('\\n');
-            mime = 'text/csv;charset=utf-8;';
-            ext = 'csv';
-        }
-        const blob = new Blob([content], {type: mime});
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'youtube_export.' + ext;
-        link.click();
-        alert(data.length + ' chaînes exportées !');
-    })();`;
-
-    navigator.clipboard.writeText(baseScript).then(() => {
-        alert("Script " + format.toUpperCase() + " copié ! Suivez l'étape 3 sur la page YouTube.");
-    });
-}
-</script>
+    </script>
 
 </body>
 </html>
