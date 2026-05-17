@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exportateur d'Abonnements YouTube</title>
+    <title>Exportateur YouTube Mobile & PC</title>
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; max-width: 600px; margin: 20px auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+        body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; max-width: 600px; margin: 20px auto; padding: 20px; color: #333; background-color: #f1f1f1; }
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { color: #ff0000; text-align: center; font-size: 1.5rem; }
-        .step { background: #fff; border-left: 5px solid #ff0000; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
-        .warning { background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 8px; font-size: 0.9em; margin-bottom: 20px; }
-        button { background: #ff0000; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
-        button:active { background: #cc0000; }
-        code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; font-size: 0.9em; word-break: break-all; }
-        .url-box { background: #f0f0f0; padding: 10px; border: 1px dashed #ccc; margin: 10px 0; font-size: 0.8em; }
+        h1 { color: #ff0000; text-align: center; }
+        .step { background: #fff; border-left: 5px solid #ff0000; padding: 15px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .btn-copy { background: #ff0000; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1.1em; }
+        .btn-copy:active { background: #cc0000; transform: scale(0.98); }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+        .footer { text-align: center; font-size: 0.8em; color: #666; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -21,40 +20,85 @@
 <div class="card">
     <h1>🚀 Exportateur YouTube</h1>
     
-    <div class="warning">
-        <strong>Pourquoi rien ne se passe ?</strong><br>
-        1. Vous devez être sur la page <strong>"Tous les abonnements"</strong>.<br>
-        2. Sur mobile, vous devez <strong>taper le nom du favori</strong> dans la barre d'adresse, pas juste cliquer dessus.
+    <div class="step">
+        <strong>1. Préparez le terrain</strong><br>
+        Ouvrez cet onglet sur votre téléphone : <br>
+        <a href="https://m.youtube.com/feed/channels" target="_blank" style="color: #007bff;">m.youtube.com/feed/channels</a>
     </div>
 
     <div class="step">
-        <strong>Étape 1 : Allez sur la bonne page</strong><br>
-        Ouvrez YouTube et allez ici :<br>
-        <div class="url-box">youtube.com/feed/channels</div>
+        <strong>2. Copiez l'outil</strong><br>
+        Appuyez sur le bouton ci-dessous :
+        <button class="btn-copy" onclick="copyScript()">COPIER LE CODE</button>
     </div>
 
     <div class="step">
-        <strong>Étape 2 : Créez le "Favori Magique"</strong><br>
-        1. Copiez ce code : 
-        <button onclick="copyScript()">Copier le code de l'outil</button>
-        2. Créez un favori dans votre navigateur (n'importe quelle page).<br>
-        3. Modifiez-le : nommez-le <strong>"EXTRAIRE"</strong> et collez le code copié dans le champ <strong>URL/Adresse</strong>.
+        <strong>3. Créez votre favori</strong><br>
+        Créez un favori nommé <code>EXTRAIRE</code> et collez le code copié dans le champ <strong>URL</strong>.
     </div>
 
     <div class="step">
-        <strong>Étape 3 : Lancez l'exportation</strong><br>
-        1. Sur la page YouTube, cliquez sur la barre d'adresse.<br>
-        2. Tapez <code>EXTRAIRE</code>.<br>
-        3. Cliquez sur le favori qui apparaît avec une petite étoile ⭐️ ou une loupe.<br>
-        4. <strong>Attendez l'alerte !</strong> Le téléphone va défiler tout seul puis télécharger le fichier.
+        <strong>4. Lancez sur YouTube</strong><br>
+        Sur la page YouTube, tapez <code>EXTRAIRE</code> dans la barre d'adresse et cliquez sur le favori suggéré (avec l'étoile ⭐️).
     </div>
 </div>
 
+<div class="footer">Note : Le défilement automatique peut prendre 10 à 30 secondes selon votre nombre d'abonnements.</div>
+
 <script>
 function copyScript() {
-    const script = `javascript:(async function(){alert("Démarrage de l'extraction... Ne touchez à rien, la page va défiler toute seule.");let h=0;while(document.documentElement.scrollHeight>h){h=document.documentElement.scrollHeight;window.scrollTo(0,h);await new Promise(r=>setTimeout(r,1000))}let s=[];document.querySelectorAll('ytd-channel-renderer,ytm-channel-item-renderer').forEach(e=>{let l=e.querySelector('a'),n=e.querySelector('#text,.subgrid-channel-name,h3');if(l&&n)s.push({nom:n.innerText.trim(),lien:l.href})});if(s.length===0){alert("Erreur : Aucun abonnement trouvé. Assurez-vous d'être sur la page youtube.com/feed/channels");return;}let b=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mes-abonnements.json';a.click();alert("Succès ! "+s.length+" abonnements exportés.")})()`;
-    navigator.clipboard.writeText(script);
-    alert("Code copié ! Créez maintenant votre favori.");
+    const script = `javascript:(async function(){
+        alert("Extraction lancée... La page va défiler toute seule. Patientez jusqu'au message de succès.");
+        
+        /* 1. Défilement automatique pour tout charger */
+        let lastHeight = 0;
+        while(true) {
+            window.scrollTo(0, document.body.scrollHeight);
+            await new Promise(r => setTimeout(r, 1500));
+            let newHeight = document.body.scrollHeight;
+            if(newHeight === lastHeight) break;
+            lastHeight = newHeight;
+        }
+
+        /* 2. Extraction brute des liens de chaînes */
+        let channels = [];
+        let seen = new Set();
+        
+        // On cherche tous les liens qui contiennent /@ ou /channel/
+        document.querySelectorAll('a').forEach(a => {
+            let href = a.href;
+            let name = a.innerText.trim();
+            
+            if ( (href.includes('/@') || href.includes('/channel/')) && name.length > 2 ) {
+                // On évite les doublons et les faux positifs
+                if (!seen.has(href) && !name.includes('\\n')) {
+                    channels.push({ nom: name, lien: href });
+                    seen.add(href);
+                }
+            }
+        });
+
+        if (channels.length === 0) {
+            alert("Erreur : Toujours rien trouvé. Assurez-vous d'être sur la page 'Tous vos abonnements'.");
+        } else {
+            let blob = new Blob([JSON.stringify(channels, null, 2)], {type: 'application/json'});
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = 'abonnements_youtube.json';
+            document.body.appendChild(a);
+            a.click();
+            alert("Terminé ! " + channels.length + " abonnements extraits dans votre dossier Téléchargements.");
+        }
+    })()`;
+    
+    const el = document.createElement('textarea');
+    el.value = script;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert("Code copié !");
 }
 </script>
 
